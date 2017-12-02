@@ -1,6 +1,12 @@
 <template>
   <div>
     <headers></headers>
+    <div>
+      <item v-for="(item, index) in todolist"
+        :key="index"
+        :item="item">
+      </item>
+    </div>
   </div>
 </template>
 
@@ -13,6 +19,11 @@ export default {
     Item,
     Headers
   },
+  computed: {
+    todolist() {
+      return this.$store.getters.getListTodo;
+    }
+  }
 }
 
 </script>

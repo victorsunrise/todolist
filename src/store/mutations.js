@@ -22,10 +22,16 @@ export default {
   },
 
   SET_NEW_ITEM: (state, { item }) => {
-    console.log('df', state, item);
+    let ids;
+    if (state.item.length === 0) {
+      ids = 0;
+    } else if (state.item.length > 0) {
+      ids = state.item[state.item.length-1].id + 1;
+    };
     const newItem = {
       type: 'new',
-      letter: item
+      letter: item,
+      id: ids
     };
     if (state && state.item) {
       state.item.push(newItem);
@@ -33,5 +39,15 @@ export default {
       state.item = [];
       state.item.push(newItem);
     }
-  }
+  },
+
+  SET_DONE_ITEM: (state, { item }) => {
+    state.item[state.item.indexOf(item)].type === 'new'
+    ? state.item[state.item.indexOf(item)].type = 'done'
+    : state.item[state.item.indexOf(item)].type = 'new';
+  },
+
+  SET_DELETE_ITEM: (state, { item }) => {
+    state.item.splice(state.item.indexOf(item),1);
+  },
 }

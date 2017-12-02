@@ -1,7 +1,7 @@
 <template>
   <div class="headers">
     <label class="headers__label"> Enter your todo: </label>
-    <input class="header__input" ref="todoinput" @keyup.enter="submit"></input>
+    <input class="header__input" ref="todoinput"  maxlength="100" @keyup.enter="submit"></input>
   </div>
 </template>
 
@@ -24,6 +24,11 @@ export default {
     justify-content: center;
       &__label {
         padding-right: 50px;
+        font-size: 20pt;
+      }
+      &__input {
+          width: 400px;
+          border-radius: 5px;
       }
   }
 </style>

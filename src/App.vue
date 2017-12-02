@@ -6,5 +6,5 @@
   </div>
 </template>
 
-<style lang="stylus">
+<style lang="less">
 </style>
