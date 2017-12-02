@@ -1,34 +1,34 @@
 <template>
-  <div class="headers">
-    <label class="headers__label"> Enter your todo: </label>
-    <input class="header__input" ref="todoinput"  maxlength="100" @keyup.enter="submit"></input>
+  <div class="search">
+    <label> Enter GitHub Login: </label>
+    <input @keyup.enter="submit" ref="entername">
+    </input>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
+
 export default {
   name: 'headers',
+  props: {
+    id: {
+      type: Number
+    }
+  },
   methods: {
-    submit(val) {
-      this.$store.dispatch('NEW_ITEM', { item: this.$refs.todoinput.value});
-      this.$refs.todoinput.value="";
+    submit() {
+       this.$store.dispatch('GET_ITEM', { value: this.$refs.entername.value, id: this.id});
     }
   }
 }
 </script>
 
 <style lang="less">
-  .headers {
+  .search {
     display: flex;
-    justify-content: center;
-      &__label {
-        padding-right: 50px;
-        font-size: 20pt;
-      }
-      &__input {
-          width: 400px;
-          border-radius: 5px;
-      }
+    justify-content: space-around;
+    padding: 15px;
+    font-size: 14pt;
   }
 </style>

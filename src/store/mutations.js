@@ -21,33 +21,55 @@ export default {
     Vue.set(state.users, id, user || false) /* false means user not found */
   },
 
-  SET_NEW_ITEM: (state, { item }) => {
-    let ids;
-    if (state.item.length === 0) {
-      ids = 0;
-    } else if (state.item.length > 0) {
-      ids = state.item[state.item.length-1].id + 1;
-    };
-    const newItem = {
-      type: 'new',
-      letter: item,
-      id: ids
-    };
-    if (state && state.item) {
-      state.item.push(newItem);
-    } else {
-      state.item = [];
-      state.item.push(newItem);
-    }
+  GET_NEW_ITEM: (state, { data, id }) => {
+      const dat = Object.assign(data, { mysuperid: id });
+      Vue.set(state.item, id, dat)
+  },
+  GET_ERROR_ITEM: (state, { id }) => {
+    const data = {
+       login:"NO THIS USER!!!",
+       id:0,
+       avatar_url:"http://toilettissuespray.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-07-at-7.36.34-PM.png",
+       html_url:"",
+       type:"",
+       name:"",
+       public_repos:0,
+       followers:0,
+       following:0,
+       created_at:"0000-00-03T05:34:03Z",
+       mysuperid:id
+     };
+      Vue.set(state.item, id, data)
+  },
+  SET_MOUNT_ITEM: (state) => {
+      const data = {
+       login:"",
+       id:0,
+       avatar_url:"http://polishsouls.com/img/placeholderfemale.jpg",
+       html_url:"",
+       type:"",
+       name:"",
+       public_repos:0,
+       followers:0,
+       following:0,
+       created_at:"0000-00-00T05:34:03Z",
+       mysuperid:0
+     }
+     Vue.set(state.item, 0, data);
+      const dat = {
+       login:"",
+       id:0,
+       avatar_url:"http://polishsouls.com/img/placeholderfemale.jpg",
+       html_url:"",
+       type:"",
+       name:"",
+       public_repos:0,
+       followers:0,
+       following:0,
+       created_at:"0000-00-00T05:34:03Z",
+       mysuperid:1
+     }
+     Vue.set(state.item, 1, dat);
   },
 
-  SET_DONE_ITEM: (state, { item }) => {
-    state.item[state.item.indexOf(item)].type === 'new'
-    ? state.item[state.item.indexOf(item)].type = 'done'
-    : state.item[state.item.indexOf(item)].type = 'new';
-  },
-
-  SET_DELETE_ITEM: (state, { item }) => {
-    state.item.splice(state.item.indexOf(item),1);
-  },
 }
