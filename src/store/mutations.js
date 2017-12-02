@@ -19,5 +19,19 @@ export default {
 
   SET_USER: (state, { id, user }) => {
     Vue.set(state.users, id, user || false) /* false means user not found */
+  },
+
+  SET_NEW_ITEM: (state, { item }) => {
+    console.log('df', state, item);
+    const newItem = {
+      type: 'new',
+      letter: item
+    };
+    if (state && state.item) {
+      state.item.push(newItem);
+    } else {
+      state.item = [];
+      state.item.push(newItem);
+    }
   }
 }

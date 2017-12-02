@@ -5,9 +5,12 @@
 </template>
 
 <script>
+export default {
+  name: 'item'
+}
 
 </script>
 
-<style lang="stylus">
+<style lang="less">
 
 </style>
