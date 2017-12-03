@@ -39,15 +39,30 @@ export default {
       state.item = [];
       state.item.push(newItem);
     }
+    localStorage.removeItem('todo');
+    localStorage.setItem('todo', JSON.stringify(state.item));
   },
 
   SET_DONE_ITEM: (state, { item }) => {
     state.item[state.item.indexOf(item)].type === 'new'
     ? state.item[state.item.indexOf(item)].type = 'done'
     : state.item[state.item.indexOf(item)].type = 'new';
+    localStorage.removeItem('todo');
+    localStorage.setItem('todo', JSON.stringify(state.item));
   },
 
   SET_DELETE_ITEM: (state, { item }) => {
     state.item.splice(state.item.indexOf(item),1);
+    localStorage.removeItem('todo');
+    localStorage.setItem('todo', JSON.stringify(state.item));
+  },
+  SET_INIT_ITEM: (state) => {
+    const storage = JSON.parse(localStorage.getItem('todo'));
+    if (storage) {
+      state.item = storage;
+    } else {
+      state.item = [];
+      localStorage.setItem('todo', JSON.stringify(state.item));
+    }
   },
 }

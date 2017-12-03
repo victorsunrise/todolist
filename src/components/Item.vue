@@ -2,7 +2,10 @@
   <div class="todoitem">
     <div class="todoitem-block">
       <div class="todoitem-block__header">
-        <input type="checkbox" class="checkbox" @change="checked(item)"></input>
+        <input type="checkbox" class="checkbox"
+          :checked="getChecked"
+          @change="checked(item)"
+        ></input>
         <div class="todoitem-block__header-label">
           <span v-if="item.type === 'new'">{{item.letter}}</span>
           <strike class="done" v-if="item.type === 'done'">{{item.letter}}</strike>
@@ -28,6 +31,14 @@ export default {
   props: {
     item: {
       type: Object
+    }
+  },
+  computed: {
+    getChecked() {
+      if (this.item.type === 'done') {
+        return true
+      }
+      return false;
     }
   },
   methods: {

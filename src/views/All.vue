@@ -19,6 +19,9 @@ export default {
     Item,
     Headers
   },
+  mounted() {
+    this.$store.dispatch('INIT_ITEM');
+  },
   computed: {
     todolist() {
       return this.$store.getters.getListTodo;
